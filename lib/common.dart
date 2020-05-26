@@ -231,7 +231,7 @@ export 'src/chart/treemap/treemap_renderer_config.dart'
     show TreeMapRendererConfig;
 export 'src/common/color.dart' show Color;
 export 'src/common/date_time_factory.dart'
-    show DateTimeFactory, LocalDateTimeFactory, UTCDateTimeFactory;
+    show DateTimeFactory, LocalDateTimeFactory, UTCDateTimeFactory, TimeZoneAwareDateTimeFactory;
 export 'src/common/gesture_listener.dart' show GestureListener;
 export 'src/common/graphics_factory.dart' show GraphicsFactory;
 export 'src/common/line_style.dart' show LineStyle;
