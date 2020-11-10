@@ -407,7 +407,20 @@ abstract class BaseTickDrawStrategy<D> implements TickDrawStrategy<D> {
           break;
       }
     }
-    canvas.drawText(tick.textElement, x, y, rotation: _degToRad(labelRotation));
+      
+    // Calculate a new x value to be sure the ticks'label are fully displayed
+    // Add 5 to have a little margin
+    double deltaXLeft = x - tick.textElement.measurement.horizontalSliceWidth / 2;
+    double deltaXRight = x + tick.textElement.measurement.horizontalSliceWidth / 2;
+    int effectiveX;
+    if (deltaXLeft < (axisBounds.left + 5)) {
+      effectiveX = (x - (deltaXLeft - axisBounds.left)).round() + 5;
+    } else if (deltaXRight > (axisBounds.width - 5)) {
+      effectiveX = (x - (deltaXRight - axisBounds.width)).round() - 5;
+    } else {
+      effectiveX = x;
+    }
+    canvas.drawText(tick.textElement, effectiveX, y, rotation: _degToRad(labelRotation));
   }
 
   TextDirection _normalizeHorizontalAnchor(
