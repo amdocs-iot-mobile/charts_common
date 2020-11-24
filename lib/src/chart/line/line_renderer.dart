@@ -298,7 +298,9 @@ class LineRenderer<D> extends BaseCartesianRenderer<D> {
     newLineMap.addAll(_seriesLineMap.entries);
     _seriesLineMap.clear();
 
-    _seriesLineMap.addEntries(newLineMap);
+    // Reverse the series order to paint the top series firstly to try
+    // to avoid some overlaps
+    _seriesLineMap.addEntries(newLineMap.reversed);
   }
 
   void update(List<ImmutableSeries<D>> seriesList, bool isAnimatingThisDraw) {
